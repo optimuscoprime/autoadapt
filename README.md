@@ -37,7 +37,7 @@ Usage
 <pre>
 autoadapt 0.1
 
-Usage: ./autoadapt.pl [ <options> ] { <unpaired-in> <unpaired-out> | <paired-in-1> <paired-out-1> <paired-in-2> <paired-out-2> }
+Usage: ./autoadapt.pl [ &lt;options&gt; ] { &lt;unpaired-in&gt; &lt;unpaired-out&gt; | &lt;paired-in-1&gt; &lt;paired-out-1&gt; &lt;paired-in-2&gt; &lt;paired-out-2&gt; }
 
 Options:
     --threads=N               number of threads to use (default: 1)
