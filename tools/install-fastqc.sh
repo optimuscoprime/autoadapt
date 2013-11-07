@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# autoadapt - Automatically detect and remove adaptors in FASTQ files
+# autoadapt - Automatic quality control for FASTQ sequencing files
 # Copyright (C) 2013  Rupert Shuttleworth
 # optimuscoprime@gmail.com
 
