@@ -137,6 +137,13 @@ sub main() {
         exit(-1);
     }
 
+    if ($usingUnpairedData) {
+        system("mkdir -p '" . dirname($unpairedOutputFilename) . "'");
+    } else {
+        system("mkdir -p '" . dirname($pairedOutputFilename1) . "'");
+        system("mkdir -p '" . dirname($pairedOutputFilename2) . "'");
+    }
+
     my $workingDirectory = File::Spec->rel2abs(tempdir(SCRIPT_DIR . "/autoadapt.tmp.XXXXXXXX"));
 
     if ($usingUnpairedData) {
