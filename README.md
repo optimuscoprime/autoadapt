@@ -28,6 +28,8 @@ As of November 2013, the NCBI Sequence Read Archive contains over three million 
 
 We developed a tool to automatically detect which adaptors and primers are present in a FASTQ file and remove those sequences from the file, as well as detecting the quality score encoding type used and removing low quality sequences.
 
+We currently make heavy use of FastQC and cutadapt, both of which are included in the tools folder.
+
 Install
 -------
 
