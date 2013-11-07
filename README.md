@@ -26,6 +26,15 @@ Overview
 
 TODO
 
+Install
+-------
+
+autoadapt needs special versions of FastQC and cutadapt to be installed. The install happens locally (inside the autoadapt/tools folder).
+
+<pre>
+make install
+</pre>
+
 Output
 ------
 
