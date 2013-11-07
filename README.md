@@ -39,11 +39,6 @@ autoadapt needs special versions of FastQC and cutadapt to be installed. The ins
 make install
 </pre>
 
-Output
-------
-
-TODO
-
 Usage
 -----
 
