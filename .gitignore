@@ -14,3 +14,17 @@ META.yml
 MYMETA.yml
 nytprof.out
 pm_to_blib
+
+testdata/
+
+tools/build/
+tools/install/
+
+*.DS_Store
+
+autoadapt.tmp.*
+
+tools/cutadapt
+tools/fastqc
+
+testing/
