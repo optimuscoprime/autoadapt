@@ -41,7 +41,7 @@ use constant DEFAULT_NUM_THREADS => 1;
 use constant DEFAULT_MINIMUM_LENGTH => 18;
 
 use constant PROGRAM_NAME => "autoadapt";
-use constant VERSION => "0.1";
+use constant VERSION => "0.2";
 
 sub getQualityEncodingBase($);
 sub runFastqc($$$);
