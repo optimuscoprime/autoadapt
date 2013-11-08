@@ -60,7 +60,7 @@ First we run FastQC to determine the quality score encoding type (e.g. phred33, 
 
 Then, the sequences for any detected contaminants (primers, adaptors, etc.) are removed using cutadapt. In addition, cutadapt will also remove low quality sequences and sequences that are shorter than a minimum length.
 
-In order to speed up the trimming process, cutadapt can also be run in parallel on small chunks of the original FASTQ file. When specifying the number of threads to use, you should consider how many CPUs are available and how fast your hard drive can read and write data.
+In order to speed up the trimming process, cutadapt can also be run in parallel on small chunks of the original FASTQ file. The file splitting and merging is handled by our script. When specifying the number of threads to use, you should consider how many CPUs are available and how fast your hard drive can read and write data.
 
 The exact details of how we run FastQC and cutadapt are printed to the console during execution. For further explanation of what each FastQC or cutadapt program argument means, please see the respective documentation:
 
