@@ -1,6 +1,20 @@
 autoadapt
 =========
 
+Overview
+--------
+
+As of November 2013, the NCBI Sequence Read Archive contains over three million gigabytes of publicly available DNA and RNA sequencing files.
+
+However, there is a wide variety of sequencing adaptors and primers which may be contaminating each file, and these sequences normally need to be removed before doing any further analysis.
+
+We developed a tool to automatically detect which adaptors and primers are present in a FASTQ file and remove those sequences from the file, as well to detect the quality score encoding type used.
+
+We currently make heavy use of FastQC and cutadapt, both of which are included in the tools folder.
+
+License
+-------
+
 <pre>
 # autoadapt - Automatic quality control for FASTQ sequencing files
 # Copyright (C) 2013  Rupert Shuttleworth
@@ -20,15 +34,6 @@ autoadapt
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 </pre>
-
-Overview
---------
-
-As of November 2013, the NCBI Sequence Read Archive contains over three million gigabytes of publicly available DNA and RNA sequencing files. However, there is a wide variety of sequencing adaptors and primers which may be contaminating each file, and these sequences need to be removed before doing any further analysis. 
-
-We developed a tool to automatically detect which adaptors and primers are present in a FASTQ file and remove those sequences from the file, as well as detecting the quality score encoding type used and removing low quality sequences.
-
-We currently make heavy use of FastQC and cutadapt, both of which are included in the tools folder.
 
 Install
 -------
