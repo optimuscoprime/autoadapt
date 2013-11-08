@@ -53,3 +53,12 @@ Options:
     --minimum-length=N        minimum length of sequences (default: 18)
 </pre>
 
+Technical details
+-----------------
+
+First we run FastQC to determine the quality score encoding type (e.g. phred33, phred64) and to look for any over-represented sequences that match against known adaptors and primers in the FastQC contaminants_list.txt file.
+
+Then, the sequences for any detected contaminants (primers, adaptors, etc.) are removed using cutadapt. In addition, cutadapt can also remove low quality sequences and sequences that are shorter than a minimum length.
+
+In order to speed up the trimming process, cutadapt can also be run in parallel on small chunks of the original FASTQ file. When specifying the number of threads to use, you should consider how many CPUs are available and how fast your hard drive is to read and write data from.
+
