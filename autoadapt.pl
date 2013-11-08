@@ -730,7 +730,7 @@ sub mergeFiles($$$$) {
 
     # copy to the real input file
     foreach my $partFile (@partFiles) {
-        while (my $line = <$partFile>) {
+        foreach my $line (<$partFile>) {
             chomp $line;
             printf $mergedFh ("%s\n", $line);
         }
