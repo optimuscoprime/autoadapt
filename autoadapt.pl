@@ -279,6 +279,9 @@ sub main() {
         }
     }
 
+    # clean up
+    system(sprintf("rm -rf %s", $workingDirectory));
+
     printf("autoadapt completed successfully.\n");
 }
 
