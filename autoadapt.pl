@@ -761,7 +761,7 @@ sub splitFile($$$) {
     # TODO make this part go faster (like merging)
 
     my $currentFile = $partFiles[$partFileIndex];
-    while (my $line = <$fh>) {
+    foreach my $line (<$fh>) {
         chomp $line;
         $currentFile->printf("%s\n", $line);         
 
