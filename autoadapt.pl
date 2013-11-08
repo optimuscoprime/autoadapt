@@ -728,7 +728,8 @@ sub mergeFiles($$$$) {
     # copy to the real input file
     foreach my $partFile (@partFiles) {
         while (my $line = <$partFile>) {
-            print $mergedFh $line;
+            chomp $line;
+            printf $mergedFh ("%s\n", $line);
         }
     }
 
@@ -758,7 +759,8 @@ sub splitFile($$$) {
 
     my $currentFile = $partFiles[$partFileIndex];
     while (my $line = <$fh>) {
-        $currentFile->print($line);         
+        chomp $line;
+        $currentFile->printf("%s\n", $line);         
 
         $i++;
 
