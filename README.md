@@ -62,7 +62,7 @@ Then, the sequences for any detected contaminants (primers, adaptors, etc.) are 
 
 In order to speed up the trimming process, cutadapt can also be run in parallel on small chunks of the original FASTQ file. The file splitting and merging is handled by our script. When specifying the number of threads to use, you should consider how many CPUs are available and how fast your hard drive can read and write data.
 
-The exact details of how we run FastQC and cutadapt are printed to the console during execution. For further explanation of what each FastQC or cutadapt program argument means, please see the respective documentation:
+The exact details of how we run FastQC and cutadapt are printed to the console during execution. For further explanation of what each FastQC or cutadapt program argument means, please see their respective documentation:
 
 http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
