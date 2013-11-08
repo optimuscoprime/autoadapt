@@ -598,7 +598,7 @@ sub runCutadapt($$$$$$$$$;$$) {
     } else {
         if ($numThreads == 1) {
             my $cutadaptCommand =
-                sprintf("%s %s --paired-output %s -o %s %s %s && %s %s --paired-output %s -o %s %s %s && rm %s %s",
+                sprintf("%s %s --paired-output %s -o %s %s %s && %s %s --paired-output %s -o %s %s %s",
                     CUTADAPT_PATH,
                     $cutadaptArguments,
                     sprintf("%s/%s.tmp", $workingDirectory, basename($pairedOutputFilename2)),
@@ -611,10 +611,7 @@ sub runCutadapt($$$$$$$$$;$$) {
                     $pairedOutputFilename1,
                     $pairedOutputFilename2,
                     sprintf("%s/%s.tmp", $workingDirectory, basename($pairedOutputFilename2)),
-                    sprintf("%s/%s.tmp", $workingDirectory, basename($pairedOutputFilename1)),
-
-                    sprintf("%s/%s.tmp", $workingDirectory, basename($pairedOutputFilename1)),
-                    sprintf("%s/%s.tmp", $workingDirectory, basename($pairedOutputFilename2))
+                    sprintf("%s/%s.tmp", $workingDirectory, basename($pairedOutputFilename1))
                 );
 
             printf "> %s\n", $cutadaptCommand;
@@ -635,7 +632,7 @@ sub runCutadapt($$$$$$$$$;$$) {
                 push @jobs, threads->create(sub {
         
                     my $cutadaptCommand = 
-                    sprintf("%s %s --paired-output %s -o %s %s %s && %s %s --paired-output %s -o %s %s %s && rm %s %s",
+                    sprintf("%s %s --paired-output %s -o %s %s %s && %s %s --paired-output %s -o %s %s %s",
 
                         CUTADAPT_PATH,
                         $cutadaptArguments,
@@ -649,10 +646,7 @@ sub runCutadapt($$$$$$$$$;$$) {
                         sprintf("%s/%s.split%d", $workingDirectory, basename($pairedOutputFilename1), $i),
                         sprintf("%s/%s.split%d", $workingDirectory, basename($pairedOutputFilename2), $i),
                         sprintf("%s/%s.tmp.split%d", $workingDirectory, basename($pairedOutputFilename2), $i),
-                        sprintf("%s/%s.tmp.split%d", $workingDirectory, basename($pairedOutputFilename1), $i),
-
-                        sprintf("%s/%s.tmp.split%d", $workingDirectory, basename($pairedOutputFilename1), $i),
-                        sprintf("%s/%s.tmp.split%d", $workingDirectory, basename($pairedOutputFilename2), $i)
+                        sprintf("%s/%s.tmp.split%d", $workingDirectory, basename($pairedOutputFilename1), $i)
                     );
 
                     printf "> %s\n", $cutadaptCommand;
@@ -713,12 +707,6 @@ sub getReverseComplement($) {
 sub mergeFiles($$$$) {
     my ($inputFilename, $outputFilename, $n, $workingDirectory) = @_;
 
-    # TODO this part doesn't really belong here
-    # delete the split input files now
-    for (my $i = 0; $i < $n; $i++) {
-        system(sprintf("rm %s/%s.split%d", $workingDirectory, basename($inputFilename), $i));
-    }
-
     # now we need to piece the output files back togegther
     my @partFiles = ();
 
@@ -737,11 +725,6 @@ sub mergeFiles($$$$) {
     }
 
     close ($mergedFh);
-
-    for (my $i = 0; $i < $n; $i++) {
-        $partFiles[$i]->close;
-        system(sprintf("rm %s/%s.split%d", $workingDirectory, basename($outputFilename), $i));
-    }
 }
 
 sub splitFile($$$) {
