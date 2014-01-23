@@ -34,7 +34,7 @@ echo "Installing cutadapt..."
 # sudo apt-get -y --force-yes install python-setuptools
 # sudo easy_install cython
 
-CUTADAPT_BUILD_DIR="${SCRIPT_DIR}/build/cutadapt"
+CUTADAPT_BUILD_DIR="${SCRIPT_DIR}/build/cutadapt-1.3"
 CUTADAPT_INSTALL_DIR="${SCRIPT_DIR}/install/cutadapt"
 
 rm -rf "${CUTADAPT_BUILD_DIR}"
