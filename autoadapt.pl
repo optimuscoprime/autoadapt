@@ -705,6 +705,7 @@ sub getReverseComplement($) {
 }
 
 sub mergeFiles($$$$) {
+    # TODO: replace with a simple `cat` with `rm` (or rather `mv split0`, `cat split*`/`cat split1,2,...`, `rm split*`).
     my ($inputFilename, $outputFilename, $n, $workingDirectory) = @_;
 
     # now we need to piece the output files back togegther
@@ -728,44 +729,33 @@ sub mergeFiles($$$$) {
 }
 
 sub splitFile($$$) {
+    # For rounding up.
+    use POSIX;
+
     my ($filename, $n, $workingDirectory) = @_;
+    die "The `split`-based solution currently cannot handle more than 9 threads, sorry" if ($n > 9);
 
-    my @partFiles = ();
+    # Calculate the number of lines in the input file with `wc -l`.
+    my $num_lines = (split " ", `wc -l $filename`)[0];
+    my $num_reads = $num_lines / 4;
+    print "Input file $filename has $num_lines lines ($num_reads reads).\n";
 
-    for (my $i = 0; $i < $n; $i++) {
-        push @partFiles, FileHandle->new(sprintf("> %s/%s.split%d", $workingDirectory, basename($filename), $i));
-    }
+    # Divide by the number of threads and round UP to be safe, use the value for `split`.
+    my $reads_per_file = POSIX::ceil($num_reads / $n);
+    my $lines_per_file = $reads_per_file * 4;
+    print "Will put up to $lines_per_file lines ($reads_per_file reads) per split file.\n";
 
-    open(my $fh, "< $filename") or die;
-
-    my $i = 0;
-    my $partFileIndex = 0;
-
-    # TODO make this part go faster (like merging)
-
-    my $currentFile = $partFiles[$partFileIndex];
-    foreach my $line (<$fh>) {
-        chomp $line;
-        $currentFile->printf("%s\n", $line);         
-
-        $i++;
-
-        if ($i % 10000000 == 0) {
-            printf "Split %d lines\n", $i;
-        }
-
-        if ($i % 40000 == 0) {
-            $partFileIndex++;
-            if ($partFileIndex == $n) {
-                $partFileIndex = 0;
-            }
-            $currentFile = $partFiles[$partFileIndex];
-        }
-    }
-
-    close($fh);
-
-    for (my $i = 0; $i < $n; $i++) {
-        $partFiles[$i]->close;
-    }
+    # Provide arguments to split to match what this function was supposed to generate originally, something like:
+    # split --lines XX --suffix-length=3 --additional-suffix=.txt --numeric-suffixes infile prefix
+    my $suffix_length = 1;
+    my $fbasename = basename($filename);
+    my $splitCommand = sprintf("split --lines %s --suffix-length=%s --numeric-suffixes %s %s/%s",
+                               $lines_per_file,
+                               $suffix_length,
+                               $filename,
+                               $workingDirectory,
+                               $fbasename . ".split",
+                               );
+    print "> $splitCommand\n";
+    print `$splitCommand`;
 }
