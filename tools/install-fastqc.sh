@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # autoadapt - Automatic quality control for FASTQ sequencing files
-# Copyright (C) 2013  Rupert Shuttleworth
-# optimuscoprime@gmail.com
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,9 +15,6 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-# Rupert Shuttleworth 2013
-# optimuscoprime@gmail.com
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
