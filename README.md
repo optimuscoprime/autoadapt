@@ -17,7 +17,6 @@ License
 
 <pre>
 # autoadapt - Automatic quality control for FASTQ sequencing files
-# Copyright (C) 2013  Rupert Shuttleworth
 # optimuscoprime@gmail.com
 
 # This program is free software; you can redistribute it and/or modify
